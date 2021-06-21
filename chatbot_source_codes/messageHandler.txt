@@ -1,0 +1,57 @@
+response = Map();
+msg = message.get("text");
+if(operation.equals("chat"))
+{
+	if(!msg.equalsIgnoreCase("About Alathea") && !msg.equalsIgnoreCase("Our Products") && !msg.equalsIgnoreCase("Our services") && !msg.equalsIgnoreCase("Industries we cover") && !msg.equalsIgnoreCase("Contact information"))
+	{
+		response = Map();
+		response.put("action","reply");
+		response.put("replies",{"Hello there!!👋,Welcome to Alathea Consulting","How can i help you today?"});
+		response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+		return response;
+	}
+}
+if(msg.equalsIgnoreCase("About Alathea"))
+{
+	response.put("action","context");
+	response.put("context_id","About");
+	question = {"name":"about","replies":{"Great!! You can learn about Alathea's vision,mission and more. [Click here](https://www.alatheaconsulting.com/about-us/) ","Do you need to know more information about us"},"suggestions":{"Yes","No!Thank you"}};
+	response.put("questions",{question});
+}
+else if(msg.equalsIgnoreCase("Our Products"))
+{
+	response.put("action","context");
+	response.put("context_id","Products");
+	question = {"name":"products","replies":{"Great! seems like you are curious to know about our products","Here is our products"},"suggestions":{"Hybrid Cloud Security Platform","Breach Detection System"}};
+	response.put("questions",{question});
+}
+else if(msg.equalsIgnoreCase("Our services"))
+{
+	response.put("action","context");
+	response.put("context_id","Services");
+	question = {"name":"services","replies":{"Awesome. Let’s get you started right away. Here you can see our list of amazing services"},"suggestions":{"Risk Advisory and Compliance Management","Security Assessment","Solution Integration and Implementation","AI and Automation","DevSecOps","Internet Of Things(IOT)"}};
+	response.put("questions",{question});
+}
+else if(msg.equalsIgnoreCase("Industries we cover"))
+{
+	response.put("action","context");
+	response.put("context_id","Industries");
+	question = {"name":"industries","replies":{"Great! here you can see the industries we are working with currently"},"suggestions":{"Financial Services","Health Care","Retail"}};
+	response.put("questions",{question});
+}
+else if(msg.equalsIgnoreCase("Contact information"))
+{
+	response.put("action","context");
+	response.put("context_id","Contact");
+	question = {"name":"contact","replies":{"Well!!You can find our contact info by clicking [here](https://www.alatheaconsulting.com/contact-us/)","Do you need to know further"},"suggestions":{"Yes","No! Thank you"}};
+	response.put("questions",{question});
+}
+else
+{
+	response = Map();
+	response.put("action","reply");
+	response.put("replies",{"Is there anything else I can help you with?"});
+	response.put("suggestions",{"About Alathea","Our Products","Our services","Industries we cover","Contact information"});
+	return response;
+}
+return response;

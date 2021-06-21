@@ -1,0 +1,825 @@
+response = Map();
+response.put("action","context");
+response.put("context_id",context_id);
+if(context_id.equals("About"))
+{
+	about = answers.get("about").get("text");
+	if(about.equalsIgnoreCase("Yes"))
+	{
+		if(!answers.containsKey("email"))
+		{
+			question = {"name":"email","replies":{{"text":"Do you have an email address ,where we can reach out to you?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			email = answers.get("email").get("text");
+			response.put("action","end");
+			response.put("replies",{"Thank you!!,one of our team member will reach out to you soon"});
+		}
+	}
+	else if(about.equalsIgnoreCase("No! Thank you"))
+	{
+		response.put("action","end");
+		response.put("replies",{"Thank you!! Have a great day"});
+	}
+	else
+	{
+		response = Map();
+		response.put("action","reply");
+		response.put("replies",{"Is there anything else I can help you with?"});
+		response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+		return response;
+	}
+}
+else if(context_id.equals("Products"))
+{
+	products = answers.get("products").get("text");
+	if(products.equalsIgnoreCase("Hybrid Cloud Security Platform"))
+	{
+		if(!answers.containsKey("part"))
+		{
+			question = {"name":"part","replies":{"Great!!Our integrated solution for Hybrid Cloud Security provides our clients secured workload configuration, vulnerability management, learn more [Click here](https://www.alatheaconsulting.com/hybrid-cloud-security-platform/)","Do you want to schedule a product demo?"},"input":{"type":"select","options":{"schedule a demo","No!Thank you"}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			part = answers.get("part").get("text");
+			if(part.equalsIgnoreCase("schedule a demo"))
+			{
+				if(!answers.containsKey("demo"))
+				{
+					question = {"name":"demo","replies":{"Great! Let’s set up a personalized demo for you. When would you like to schedule it?"},"input":{"type":"calendar"}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					demo = answers.get("demo").get("text");
+					if(!answers.containsKey("email"))
+					{
+						question = {"name":"email","replies":{{"text":"We need some more details to proceed further,Can i have your email?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+						response.put("questions",{question});
+					}
+					else
+					{
+						email = answers.get("email").get("text");
+						if(!answers.containsKey("phone"))
+						{
+							question = {"name":"phone","replies":{{"text":"Can I have your phone number in case we need to reach out to you for further follow up","validate":{"format":"phoneno","error":{"Enter a valid phone number"}},"field_name":"siq_phone"}}};
+							response.put("questions",{question});
+						}
+						else
+						{
+							phone = answers.get("phone").get("text");
+							response.put("action","forward");
+							response.put("replies",{"One of our product specialist will contact you soon"});
+						}
+					}
+				}
+			}
+			else if(part.equalsIgnoreCase("No!Thank you"))
+			{
+				if(!answers.containsKey("anythingelse"))
+				{
+					question = {"name":"anythingelse","replies":{"Is there any thing else that I can assist you with?"},"input":{"type":"select","options":{"Yes","No"}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					anythingelse = answers.get("anythingelse").get("text");
+					if(anythingelse.equalsIgnoreCase("Yes"))
+					{
+						response.put("action","reply");
+						response.put("replies",{"Hello there!! 👋 ,Welcome to Alathea Consulting","How can i help you today?"});
+						response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+					}
+					else
+					{
+						response.put("action","end");
+						response.put("replies",{"Thank! you have a great day"});
+					}
+				}
+			}
+		}
+	}
+	else if(products.equalsIgnoreCase("Breach Detection System"))
+	{
+		if(!answers.containsKey("part"))
+		{
+			question = {"name":"part","replies":{"Well! In this case Alathea uses Deep Learning techniques and  enabling cyber-attacks to be identified and blocked in real-time before any harm can occur,learn more [Click here](https://www.alatheaconsulting.com/breach-detection-system/)","Do you want to schedule a product demo?"},"input":{"type":"select","options":{"schedule a demo","No!Thank you"}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			part = answers.get("part").get("text");
+			if(part.equalsIgnoreCase("schedule a demo"))
+			{
+				if(!answers.containsKey("demo"))
+				{
+					question = {"name":"demo","replies":{"Great! Let’s set up a personalized demo for you. When would you like to schedule it?"},"input":{"type":"calendar"}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					demo = answers.get("demo").get("text");
+					if(!answers.containsKey("email"))
+					{
+						question = {"name":"email","replies":{{"text":"We need some more details to proceed further,Can i have your email?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+						response.put("questions",{question});
+					}
+					else
+					{
+						email = answers.get("email").get("text");
+						if(!answers.containsKey("phone"))
+						{
+							question = {"name":"phone","replies":{{"text":"Can I have your phone number in case we need to reach out to you for further follow up","validate":{"format":"phoneno","error":{"Enter a valid phone number"}},"field_name":"siq_phone"}}};
+							response.put("questions",{question});
+						}
+						else
+						{
+							phone = answers.get("phone").get("text");
+							response.put("action","forward");
+							response.put("replies",{"One of our product specialist will contact you soon"});
+						}
+					}
+				}
+			}
+			else if(part.equalsIgnoreCase("No!Thank you"))
+			{
+				if(!answers.containsKey("anythingelse"))
+				{
+					question = {"name":"anythingelse","replies":{"Is there any thing else that I can assist you with?"},"input":{"type":"select","options":{"Yes","No"}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					anythingelse = answers.get("anythingelse").get("text");
+					if(anythingelse.equalsIgnoreCase("Yes"))
+					{
+						response.put("action","reply");
+						response.put("replies",{"Hello there!! 👋 ,Welcome to Alathea Consulting","How can i help you today?"});
+						response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+					}
+					else
+					{
+						response.put("action","end");
+						response.put("replies",{"Thank! you have a great day"});
+					}
+				}
+			}
+		}
+	}
+}
+else if(context_id.equals("Services"))
+{
+	services = answers.get("services").get("text");
+	if(services.equalsIgnoreCase("Risk Advisory and Compliance Management"))
+	{
+		if(!answers.containsKey("elsepart"))
+		{
+			question = {"name":"elsepart","replies":{"We can help you to Manage risk and compliance of your ecosystem and security at the same pace,learn more [Click here](https://www.alatheaconsulting.com/risk-advisory-and-compliance-management/)","Do you want to know more information?"},"input":{"type":"select","options":{"Yes","No!Thank you"}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			elsepart = answers.get("elsepart").get("text");
+			if(elsepart.equalsIgnoreCase("Yes"))
+			{
+				if(!answers.containsKey("email"))
+				{
+					question = {"name":"email","replies":{{"text":"We need some more details to proceed further,Can i have your email?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					email = answers.get("email").get("text");
+					if(!answers.containsKey("name"))
+					{
+						question = {"name":"name","replies":{{"text":"Can I have your name please?","field_name":"siq_name"}}};
+						response.put("questions",{question});
+					}
+					else
+					{
+						name = answers.get("name").get("text");
+						if(!answers.containsKey("phone"))
+						{
+							question = {"name":"phone","replies":{{"text":"Can I have your phone number in case we need to reach out to you for further follow up","validate":{"format":"phoneno","error":{"Enter a valid phone number"}},"field_name":"siq_phone"}}};
+							response.put("questions",{question});
+						}
+						else
+						{
+							phone = answers.get("phone").get("text");
+							response.put("action","forward");
+							response.put("replies",{"Thank you!! One of our service specialist will contact you soon"});
+						}
+					}
+				}
+			}
+			else if(elsepart.equalsIgnoreCase("No!Thank you"))
+			{
+				if(!answers.containsKey("anythingelse"))
+				{
+					question = {"name":"anythingelse","replies":{"Is there any thing else that I can assist you with?"},"input":{"type":"select","options":{"Yes","No"}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					anythingelse = answers.get("anythingelse").get("text");
+					if(anythingelse.equalsIgnoreCase("Yes"))
+					{
+						response.put("action","reply");
+						response.put("replies",{"Hello there!! 👋 ,Welcome to Alathea Consulting","How can i help you today?"});
+						response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+					}
+					else
+					{
+						response.put("action","end");
+						response.put("replies",{"Bye"});
+					}
+				}
+			}
+		}
+	}
+	else if(services.equalsIgnoreCase("Security Assessment"))
+	{
+		if(!answers.containsKey("elsepart"))
+		{
+			question = {"name":"elsepart","replies":{"We have well experienced team,that assess the vulnerability of infrastructure and manage risks for organizations, learn more [Click here](https://www.alatheaconsulting.com/security-assessment/)","Do you want to know more information?"},"input":{"type":"select","options":{"Yes","No!Thank you"}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			elsepart = answers.get("elsepart").get("text");
+			if(elsepart.equalsIgnoreCase("Yes"))
+			{
+				if(!answers.containsKey("email"))
+				{
+					question = {"name":"email","replies":{{"text":"We need some more details to proceed further,Can i have your email?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					email = answers.get("email").get("text");
+					if(!answers.containsKey("name"))
+					{
+						question = {"name":"name","replies":{{"text":"Can I have your name please?","field_name":"siq_name"}}};
+						response.put("questions",{question});
+					}
+					else
+					{
+						name = answers.get("name").get("text");
+						if(!answers.containsKey("phone"))
+						{
+							question = {"name":"phone","replies":{{"text":"Can I have your phone number in case we need to reach out to you for further follow up","validate":{"format":"phoneno","error":{"Enter a valid phone number"}},"field_name":"siq_phone"}}};
+							response.put("questions",{question});
+						}
+						else
+						{
+							phone = answers.get("phone").get("text");
+							response.put("action","forward");
+							response.put("replies",{"Thank you!! One of our service specialist will contact you soon"});
+						}
+					}
+				}
+			}
+			else if(elsepart.equalsIgnoreCase("No!Thank you"))
+			{
+				if(!answers.containsKey("anythingelse"))
+				{
+					question = {"name":"anythingelse","replies":{"Is there any thing else that I can assist you with?"},"input":{"type":"select","options":{"Yes","No"}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					anythingelse = answers.get("anythingelse").get("text");
+					if(anythingelse.equalsIgnoreCase("Yes"))
+					{
+						response.put("action","reply");
+						response.put("replies",{"Hello there!,Welcome to Alathea Consulting","How can i help you today?"});
+						response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+					}
+					else
+					{
+						response.put("action","end");
+						response.put("replies",{"Thank! you have a great day"});
+					}
+				}
+			}
+		}
+	}
+	else if(services.equalsIgnoreCase("Solution Integration and Implementation"))
+	{
+		if(!answers.containsKey("elsepart"))
+		{
+			question = {"name":"elsepart","replies":{"Well! Alathea’s solution integration and implementation services provide end to end, vendor-agnostic security solution integration capability, learn more [Click here](https://www.alatheaconsulting.com/solution-integration-and-implementation/)","Do you want to know more information?"},"input":{"type":"select","options":{"Yes","No!Thank you"}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			elsepart = answers.get("elsepart").get("text");
+			if(elsepart.equalsIgnoreCase("Yes"))
+			{
+				if(!answers.containsKey("email"))
+				{
+					question = {"name":"email","replies":{{"text":"We need some more details to proceed further,Can i have your email?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					email = answers.get("email").get("text");
+					if(!answers.containsKey("name"))
+					{
+						question = {"name":"name","replies":{{"text":"Can I have your name please?","field_name":"siq_name"}}};
+						response.put("questions",{question});
+					}
+					else
+					{
+						name = answers.get("name").get("text");
+						if(!answers.containsKey("phone"))
+						{
+							question = {"name":"phone","replies":{{"text":"Can I have your phone number in case we need to reach out to you for further follow up","validate":{"format":"phoneno","error":{"Enter a valid phone number"}},"field_name":"siq_phone"}}};
+							response.put("questions",{question});
+						}
+						else
+						{
+							phone = answers.get("phone").get("text");
+							response.put("action","forward");
+							response.put("replies",{"Thank you!! One of our service specialist will contact you soon"});
+						}
+					}
+				}
+			}
+			else if(elsepart.equalsIgnoreCase("No!Thank you"))
+			{
+				if(!answers.containsKey("anythingelse"))
+				{
+					question = {"name":"anythingelse","replies":{"Is there any thing else that I can assist you with?"},"input":{"type":"select","options":{"Yes","No"}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					anythingelse = answers.get("anythingelse").get("text");
+					if(anythingelse.equalsIgnoreCase("Yes"))
+					{
+						response.put("action","reply");
+						response.put("replies",{"Hello there!,Welcome to Alathea Consulting","How can i help you today?"});
+						response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+					}
+					else
+					{
+						response.put("action","end");
+						response.put("replies",{"Thank you! have a great day"});
+					}
+				}
+			}
+		}
+	}
+	else if(services.equalsIgnoreCase("AI and Automation"))
+	{
+		if(!answers.containsKey("elsepart"))
+		{
+			question = {"name":"elsepart","replies":{"Great!! We can help to Increase your productivity through a secured ecosystem using the power of Artificial Intelligence(AI), learn more [Click here](https://www.alatheaconsulting.com/ai-and-automation/)","Do you want to know more information?"},"input":{"type":"select","options":{"Yes","No!Thank you"}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			elsepart = answers.get("elsepart").get("text");
+			if(elsepart.equalsIgnoreCase("Yes"))
+			{
+				if(!answers.containsKey("email"))
+				{
+					question = {"name":"email","replies":{{"text":"We need some more details to proceed further,Can i have your email?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					email = answers.get("email").get("text");
+					if(!answers.containsKey("name"))
+					{
+						question = {"name":"name","replies":{{"text":"Can I have your name please?","field_name":"siq_name"}}};
+						response.put("questions",{question});
+					}
+					else
+					{
+						name = answers.get("name").get("text");
+						if(!answers.containsKey("phone"))
+						{
+							question = {"name":"phone","replies":{{"text":"Can I have your phone number in case we need to reach out to you for further follow up","validate":{"format":"phoneno","error":{"Enter a valid phone number"}},"field_name":"siq_phone"}}};
+							response.put("questions",{question});
+						}
+						else
+						{
+							phone = answers.get("phone").get("text");
+							response.put("action","forward");
+							response.put("replies",{"Thank you!! One of our service specialist will contact you soon"});
+						}
+					}
+				}
+			}
+			else if(elsepart.equalsIgnoreCase("No!Thank you"))
+			{
+				if(!answers.containsKey("anythingelse"))
+				{
+					question = {"name":"anythingelse","replies":{"Is there any thing else that I can assist you with?"},"input":{"type":"select","options":{"Yes","No"}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					anythingelse = answers.get("anythingelse").get("text");
+					if(anythingelse.equalsIgnoreCase("Yes"))
+					{
+						response.put("action","reply");
+						response.put("replies",{"Hello there!! 👋 ,Welcome to Alathea Consulting","How can i help you today?"});
+						response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+					}
+					else
+					{
+						response.put("action","end");
+						response.put("replies",{"Bye"});
+					}
+				}
+			}
+		}
+	}
+	else if(services.equalsIgnoreCase("DevSecOps"))
+	{
+		if(!answers.containsKey("elsepart"))
+		{
+			question = {"name":"elsepart","replies":{"Well!! Our security experts can guide your team and set up Static Application Security Testing (SAST) and Interactive Application Security Testing (IAST) tools and help write more secure code,learn more [Click here](https://www.alatheaconsulting.com/devsecops/)","Do you want to know more information?"},"input":{"type":"select","options":{"Yes","No!Thank you"}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			elsepart = answers.get("elsepart").get("text");
+			if(elsepart.equalsIgnoreCase("Yes"))
+			{
+				if(!answers.containsKey("email"))
+				{
+					question = {"name":"email","replies":{{"text":"We need some more details to proceed further,Can i have your email?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					email = answers.get("email").get("text");
+					if(!answers.containsKey("name"))
+					{
+						question = {"name":"name","replies":{{"text":"Can I have your name please?","field_name":"siq_name"}}};
+						response.put("questions",{question});
+					}
+					else
+					{
+						name = answers.get("name").get("text");
+						if(!answers.containsKey("phone"))
+						{
+							question = {"name":"phone","replies":{{"text":"Can I have your phone number in case we need to reach out to you for further follow up","validate":{"format":"phoneno","error":{"Enter a valid phone number"}},"field_name":"siq_phone"}}};
+							response.put("questions",{question});
+						}
+						else
+						{
+							phone = answers.get("phone").get("text");
+							response.put("action","forward");
+							response.put("replies",{"Thank you!! One of our service specialist will contact you soon"});
+						}
+					}
+				}
+			}
+			else if(elsepart.equalsIgnoreCase("No!Thank you"))
+			{
+				if(!answers.containsKey("anythingelse"))
+				{
+					question = {"name":"anythingelse","replies":{"Is there any thing else that I can assist you with?"},"input":{"type":"select","options":{"Yes","No"}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					anythingelse = answers.get("anythingelse").get("text");
+					if(anythingelse.equalsIgnoreCase("Yes"))
+					{
+						response.put("action","reply");
+						response.put("replies",{"Hello there!! 👋 ,Welcome to Alathea Consulting","How can i help you today?"});
+						response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+					}
+					else
+					{
+						response.put("action","end");
+						response.put("replies",{"Bye"});
+					}
+				}
+			}
+		}
+	}
+	else if(services.equalsIgnoreCase("Internet Of Things(IOT)"))
+	{
+		if(!answers.containsKey("elsepart"))
+		{
+			question = {"name":"elsepart","replies":{"Well! In this case Alathea experts looks for multiple solutions to resolve data breach using state-of-the-art tools by hiring the best experts in the field,learn more [Click here](https://www.alatheaconsulting.com/internet-of-things/)","Do you want to know more information?"},"input":{"type":"select","options":{"Yes","No!Thank you"}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			elsepart = answers.get("elsepart").get("text");
+			if(elsepart.equalsIgnoreCase("Yes"))
+			{
+				if(!answers.containsKey("email"))
+				{
+					question = {"name":"email","replies":{{"text":"We need some more details to proceed further,Can i have your email?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					email = answers.get("email").get("text");
+					if(!answers.containsKey("name"))
+					{
+						question = {"name":"name","replies":{{"text":"Can I have your name please?","field_name":"siq_name"}}};
+						response.put("questions",{question});
+					}
+					else
+					{
+						name = answers.get("name").get("text");
+						if(!answers.containsKey("phone"))
+						{
+							question = {"name":"phone","replies":{{"text":"Can I have your phone number in case we need to reach out to you for further follow up","validate":{"format":"phoneno","error":{"Enter a valid phone number"}},"field_name":"siq_phone"}}};
+							response.put("questions",{question});
+						}
+						else
+						{
+							phone = answers.get("phone").get("text");
+							response.put("action","forward");
+							response.put("replies",{"Thank you!! One of our service specialist will contact you soon"});
+						}
+					}
+				}
+			}
+			else if(elsepart.equalsIgnoreCase("No!Thank you"))
+			{
+				if(!answers.containsKey("anythingelse"))
+				{
+					question = {"name":"anythingelse","replies":{"Is there any thing else that I can assist you with?"},"input":{"type":"select","options":{"Yes","No"}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					anythingelse = answers.get("anythingelse").get("text");
+					if(anythingelse.equalsIgnoreCase("Yes"))
+					{
+						response.put("action","reply");
+						response.put("replies",{"Hello there!! 👋 ,Welcome to Alathea Consulting","How can i help you today?"});
+						response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+					}
+					else
+					{
+						response.put("action","end");
+						response.put("replies",{"Bye"});
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		question = {"name":"Services","replies":{"Hey!! If you are looking for the services we are offering.","Here it is :) ."},"suggestions":{"Risk Advisory and Compliance Management","Security Assessment","Solution Integration and Implementation","AI and Automation","DevSecOps","Internet Of Things(IOT)"}};
+		response.put("questions",{question});
+	}
+}
+else if(context_id.equals("Industries"))
+{
+	industries = answers.get("industries").get("text");
+	if(industries.equalsIgnoreCase("Financial Services"))
+	{
+		if(!answers.containsKey("indus"))
+		{
+			question = {"name":"indus","replies":{"Well!! Alathea works with financial institutions security teams to develop a strategy and scalable plans to continuously enhance their security landscape that would meet compliance needs,learn more [Click here](https://www.alatheaconsulting.com/financial-services/)","Do you want to know more details?"},"input":{"type":"select","options":{"Yes","No!Thank you"}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			indus = answers.get("indus").get("text");
+			if(indus.equalsIgnoreCase("Yes"))
+			{
+				if(!answers.containsKey("email"))
+				{
+					question = {"name":"email","replies":{{"text":"We need some more details to proceed further,Can i have your email?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					email = answers.get("email").get("text");
+					if(!answers.containsKey("name"))
+					{
+						question = {"name":"name","replies":{{"text":"Can I have your name please?","field_name":"siq_name"}}};
+						response.put("questions",{question});
+					}
+					else
+					{
+						name = answers.get("name").get("text");
+						if(!answers.containsKey("phone"))
+						{
+							question = {"name":"phone","replies":{{"text":"Can I have your phone number ,in case we need to reach out to you for further follow up","validate":{"format":"phoneno","error":{"Enter a valid phone number"}},"field_name":"siq_phone"}}};
+							response.put("questions",{question});
+						}
+						else
+						{
+							phone = answers.get("phone").get("text");
+							response.put("action","forward");
+							response.put("replies",{"Thank you!!,one of our expert will reach out to you soon"});
+						}
+					}
+				}
+			}
+			else if(indus.equalsIgnoreCase("No!Thank you"))
+			{
+				if(!answers.containsKey("anythingelse"))
+				{
+					question = {"name":"anythingelse","replies":{"Is there any thing else that I can assist you with?"},"input":{"type":"select","options":{"Yes","No"}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					anythingelse = answers.get("anythingelse").get("text");
+					if(anythingelse.equalsIgnoreCase("Yes"))
+					{
+						response.put("action","reply");
+						response.put("replies",{"Hello there!! 👋 ,Welcome to Alathea Consulting","How can i help you today?"});
+						response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+					}
+					else
+					{
+						response.put("action","end");
+						response.put("replies",{"Bye"});
+					}
+				}
+			}
+		}
+	}
+	else if(industries.equalsIgnoreCase("Health Care"))
+	{
+		if(!answers.containsKey("indus"))
+		{
+			question = {"name":"indus","replies":{" Well!!At Alathea our Techno functional expertise along with our Artificial Intelligence team helps our customers to address mechanisms like encryption of data, DDoS protection, learn more [Click here](https://www.alatheaconsulting.com/healthcare/)","Do you want to know more information?"},"input":{"type":"select","options":{"Yes","No!Thank you"}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			indus = answers.get("indus").get("text");
+			if(indus.equalsIgnoreCase("Yes"))
+			{
+				if(!answers.containsKey("email"))
+				{
+					question = {"name":"email","replies":{{"text":"We need some more details to proceed further,Can i have your email?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					email = answers.get("email").get("text");
+					if(!answers.containsKey("name"))
+					{
+						question = {"name":"name","replies":{{"text":"Can I have your name please?","field_name":"siq_name"}}};
+						response.put("questions",{question});
+					}
+					else
+					{
+						name = answers.get("name").get("text");
+						if(!answers.containsKey("phone"))
+						{
+							question = {"name":"phone","replies":{{"text":"Can I have your phone number ,in case we need to reach out to you for further follow up","validate":{"format":"phoneno","error":{"Enter a valid phone number"}},"field_name":"siq_phone"}}};
+							response.put("questions",{question});
+						}
+						else
+						{
+							phone = answers.get("phone").get("text");
+							response.put("action","forward");
+							response.put("replies",{"Thank you!one of our expert will reach out to you soon"});
+						}
+					}
+				}
+			}
+			else if(indus.equalsIgnoreCase("No!Thank you"))
+			{
+				if(!answers.containsKey("anythingelse"))
+				{
+					question = {"name":"anythingelse","replies":{"Is there any thing else that I can assist you with?"},"input":{"type":"select","options":{"Yes","No"}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					anythingelse = answers.get("anythingelse").get("text");
+					if(anythingelse.equalsIgnoreCase("Yes"))
+					{
+						response.put("action","reply");
+						response.put("replies",{"Hello there!! 👋 ,Welcome to Alathea Consulting","How can i help you today?"});
+						response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+					}
+					else
+					{
+						response.put("action","end");
+						response.put("replies",{"Thank you! have a great day"});
+					}
+				}
+			}
+		}
+	}
+	else if(industries.equalsIgnoreCase("Retail"))
+	{
+		if(!answers.containsKey("indus"))
+		{
+			question = {"name":"indus","replies":{"Well!! Alathea consultants help retailers, franchises, and chain stores protect their cardholder environments and establish comprehensive CyberSecurity programs including NIST, learn more [Click here](https://www.alatheaconsulting.com/retail/)","Do you want to know more information?"},"input":{"type":"select","options":{"Yes","No!Thank you"}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			indus = answers.get("indus").get("text");
+			if(indus.equalsIgnoreCase("Yes"))
+			{
+				if(!answers.containsKey("email"))
+				{
+					question = {"name":"email","replies":{{"text":"We need some more details to proceed further,Can i have your email?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					email = answers.get("email").get("text");
+					if(!answers.containsKey("name"))
+					{
+						question = {"name":"name","replies":{{"text":"Can I have your name please?","field_name":"siq_name"}}};
+						response.put("questions",{question});
+					}
+					else
+					{
+						name = answers.get("name").get("text");
+						if(!answers.containsKey("phone"))
+						{
+							question = {"name":"phone","replies":{{"text":"Can I have your phone number ,in case we need to reach out to you for further follow up","validate":{"format":"phoneno","error":{"Enter a valid phone number"}},"field_name":"siq_phone"}}};
+							response.put("questions",{question});
+						}
+						else
+						{
+							phone = answers.get("phone").get("text");
+							response.put("action","forward");
+							response.put("replies",{"Thank you!!,one of our expert will reach out to you soon"});
+						}
+					}
+				}
+			}
+			else if(indus.equalsIgnoreCase("No!Thank you"))
+			{
+				if(!answers.containsKey("anythingelse"))
+				{
+					question = {"name":"anythingelse","replies":{"Is there any thing else that I can assist you with?"},"input":{"type":"select","options":{"Yes","No"}}};
+					response.put("questions",{question});
+				}
+				else
+				{
+					anythingelse = answers.get("anythingelse").get("text");
+					if(anythingelse.equalsIgnoreCase("Yes"))
+					{
+						response.put("action","reply");
+						response.put("replies",{"Hello there!! 👋 ,Welcome to Alathea Consulting","How can i help you today?"});
+						response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+					}
+					else
+					{
+						response.put("action","end");
+						response.put("replies",{"Thank you! have a great day"});
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		question = {"name":"Services","replies":{"Hey!! If you are looking for the industries we work with.","Here it is :) ."},"suggestions":{"Financial Services","Health Care","Retail"}};
+		response.put("questions",{question});
+	}
+}
+else if(context_id.equals("Contact"))
+{
+	contact = answers.get("contact").get("text");
+	if(contact.equalsIgnoreCase("Yes"))
+	{
+		if(!answers.containsKey("email"))
+		{
+			question = {"name":"email","replies":{{"text":"Do you have an email address ,where we can reach out to you?","field_name":"siq_email","validate":{"format":"email","error":{"Enter a valid email"}}}}};
+			response.put("questions",{question});
+		}
+		else
+		{
+			email = answers.get("email").get("text");
+			response.put("action","end");
+			response.put("replies",{"Thank you!!,one of our team member will reach out to you soon"});
+		}
+	}
+	else if(contact.equalsIgnoreCase("No! Thank you"))
+	{
+		response.put("action","end");
+		response.put("replies",{"Thank you!! Have a great day"});
+	}
+	else
+	{
+		response = Map();
+		response.put("action","reply");
+		response.put("replies",{"Is there anything else I can help you with?"});
+		response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+		return response;
+	}
+}
+return response;

@@ -1,0 +1,5 @@
+response = Map();
+response.put("action","reply");
+response.put("replies",{"Hello there!! 👋,Welcome to Alathea Consulting","How can i help you today?"});
+response.put("suggestions",{"About Alathea","Our products","Our services","Industries we cover","Contact information"});
+return response;
